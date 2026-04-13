@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class PunchHitbox : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject ragdoll;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("ohko"))
+        {
+            Debug.Log("hit");
+            Instantiate(ragdoll, transform.position, transform.rotation);
+            Destroy(other.gameObject);
+            ragdoll.GetComponentInChildren<Rigidbody>().AddForce(transform.forward * 10);
+        }
     }
 }
