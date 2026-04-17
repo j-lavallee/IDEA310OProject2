@@ -13,7 +13,7 @@ public class PunchHitbox : MonoBehaviour
             var rg = Instantiate(ragdoll, other.transform.position, other.transform.rotation);
 
             foreach (Rigidbody bone in rg.GetComponentsInChildren<Rigidbody>()){
-                bone.AddForce(transform.forward * force, ForceMode.Impulse);
+                bone.AddForce(gameObject.transform.forward * force, ForceMode.Impulse);
             }
         }
     }
