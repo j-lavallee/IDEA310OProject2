@@ -12,6 +12,7 @@ public class Interactor : MonoBehaviour
     public Vector2 defaultIconSize;
     public Sprite defaultInteractIcon;
     public Vector2 defaultInteractIconSize;
+    public float interactDistance = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class Interactor : MonoBehaviour
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 4, interactableLayermask))
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactDistance, interactableLayermask))
         {
             if(hit.collider.GetComponent<Interactable>() != false)
             {
@@ -50,7 +51,7 @@ public class Interactor : MonoBehaviour
                     interactImage.sprite = defaultInteractIcon;
                     interactImage.rectTransform.sizeDelta = defaultInteractIconSize;
                 }
-                if(Input.GetKeyDown(KeyCode.E))
+                if(Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     interactable.onInteract.Invoke();
                 }
